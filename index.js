@@ -50,19 +50,51 @@ bot.on('text', async (ctx) => {
 
     const text = ctx.message.text;
 
-    await ctx.reply('Запрос получен');
-    ctx.session.messages.push({
-        role: 'user',
-        content: text,
-    });
+    ctx.telegram
+        .sendMessage(ctx.chat.id, '.', { parse_mode: 'Markdown' })
+        .then(async (message) => {
+            ctx.session.messages.push({
+                role: 'user',
+                content: text,
+            });
 
-    const response = await openai.chat(ctx.session.messages);
-    ctx.session.messages.push({
-        role: 'assistant',
-        content: response.content,
-    });
+            let loader = '.';
 
-    await ctx.replyWithMarkdown(response.content);
+            let timer = setInterval(() => {
+                if (loader.length < 3) {
+                    loader += '.';
+                } else {
+                    loader = '.';
+                }
+
+                ctx.telegram.editMessageText(
+                    ctx.chat.id,
+                    message.message_id,
+                    null,
+                    loader,
+                    { parse_mode: 'Markdown' }
+                );
+            }, 1000);
+
+            const response = await openai.chat(ctx.session.messages);
+
+            ctx.session.messages.push({
+                role: 'assistant',
+                content: response.content,
+            });
+
+            ctx.telegram
+                .editMessageText(
+                    ctx.chat.id,
+                    message.message_id,
+                    null,
+                    response.content,
+                    { parse_mode: 'Markdown' }
+                )
+                .then(() => {
+                    clearInterval(timer);
+                });
+        });
 });
 
 bot.launch();
