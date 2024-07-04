@@ -3,8 +3,8 @@ Telegram chatbot GPT client on telegraf
 
 Чтобы использовать нужно:
  * сервер с поддержкой nodejs (можно запускать на рабочем компьютере)
- * Создать бота в телеграм с помощью https://telegram.me/botfather
- * Создать api ключ https://platform.openai.com/account/api-keys (нужен подтвержденный аккаунт)
+ * Создать бота в телеграм с помощью https://telegram.me/botfatherпш
+ * Создать api ключ gigachat api https://developers.sber.ru/docs/ru/gigachat/api/reference/rest/gigachat-api
 
 ## Как запустить?
 Прописать в .env ключи бота и openai ключ

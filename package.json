@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "gigachat-node": "^2.1.2",
     "nodemon": "^2.0.20",
-    "openai": "^3.2.1",
     "telegraf": "3.38.0"
   }
 }
