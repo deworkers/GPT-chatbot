@@ -7,6 +7,7 @@
     "start": "node .",
     "dev": "nodemon ."
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "dotenv": "^16.0.3",
     "gigachat-node": "^2.1.2",
     "nodemon": "^2.0.20",
+    "openai": "^4.93.0",
     "telegraf": "3.38.0"
   }
 }
